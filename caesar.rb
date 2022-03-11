@@ -7,30 +7,12 @@ def caesar_convert(string, shift_factor)
       next char
     end
 
-    if char == char.upcase
-      char_shifted = char.ord + shift_factor
-
-      if char_shifted > 90
-        char_shifted = 64 + (char_shifted - 90)
-      end
-
-      if char_shifted < 65
-        char_shifted = 91 - (65 - char_shifted)
-      end
-      
+    if char.ord.between?(65, 90)
+      char_shifted = (65 + (((char.ord + shift_factor) - 65) % 26))
     end
-
-    if char == char.downcase
-      char_shifted = char.ord + shift_factor
-
-      if char_shifted > 122
-        char_shifted =  96 + (char_shifted - 122)
-      end
-
-      if char_shifted < 97
-        char_shifted =  123 - (97 - char_shifted)
-      end
-
+    
+    if char.ord.between?(97, 122)
+      char_shifted = (97 + (((char.ord + shift_factor) - 97) % 26))
     end
 
     char_shifted.chr
